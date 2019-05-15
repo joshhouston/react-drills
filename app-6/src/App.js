@@ -1,21 +1,34 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
+import Todo from "./Todo"
 
 class App extends Component {
-  render() {
+  constructor() {
+    super()
+    this.state = {
+        todo: '',
+        todoList: []
+    }
+}
+handleEvent(e) {
+    this.setState({todo: e})
+    // console.log(e)
+}
+
+addTodo(input){
+  console.log(input)
+}
+
+render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+        <div>
+            <h1>my to-do list:</h1>
+            <input type="text" onChange={e => this.handleEvent(e.target.value)}/>
+            <button onClick={() => {this.addTodo(this.state.todo)}}>add</button>
+            <Todo name={this.state.todo}/>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+    )
+}
 }
 
 export default App;
